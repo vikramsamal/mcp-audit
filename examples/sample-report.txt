@@ -186,6 +186,14 @@ filesystem           ~168 tokens
 database             ~134 tokens
 local-shell          ~27 tokens
 
+Disclaimer
+----------
+mcp-audit provides heuristic analysis of MCP configurations and is not a
+formal security certification or guarantee. Developers remain responsible
+for reviewing MCP servers, permissions, credentials, and data exposed to AI systems.
+
+Guarantees
+----------
 ✓ No MCP servers were started.
 ✓ No files were modified.
 ✓ No data was uploaded.

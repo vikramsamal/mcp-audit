@@ -32,6 +32,11 @@ Exit codes:
   0 = Audit completed successfully; no findings triggered --fail-on threshold
   1 = Findings detected at or above --fail-on threshold
   2 = Input, parsing, or configuration error
+
+Disclaimer:
+  mcp-audit provides heuristic analysis of MCP configurations and is not a
+  formal security certification or guarantee. Developers remain responsible
+  for reviewing MCP servers, permissions, credentials, and data exposed to AI systems.
 """,
     )
 

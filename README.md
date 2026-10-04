@@ -14,6 +14,8 @@
 * ⚡ **Deterministic & Fast** — No LLMs or models needed; instant static analysis
 * 🛡️ **Strictly Read-Only** — No MCP servers are started, no commands executed, no files modified
 
+> **Notice & Disclaimer:** `mcp-audit` provides heuristic analysis of MCP configurations to assist developers in reviewing their environments. It is not a formal security certification or guarantee. Developers remain responsible for reviewing MCP servers, permissions, credentials, and data exposed to AI systems.
+
 ---
 
 ## Why mcp-audit?
@@ -256,6 +258,14 @@ filesystem           ~168 tokens
 database             ~134 tokens
 local-shell          ~27 tokens
 
+Disclaimer
+----------
+mcp-audit provides heuristic analysis of MCP configurations and is not a
+formal security certification or guarantee. Developers remain responsible
+for reviewing MCP servers, permissions, credentials, and data exposed to AI systems.
+
+Guarantees
+----------
 ✓ No MCP servers were started.
 ✓ No files were modified.
 ✓ No data was uploaded.

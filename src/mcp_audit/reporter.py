@@ -223,7 +223,17 @@ def format_terminal_report(
         lines.append(c(DIM, "No servers configured"))
     lines.append("")
 
+    # Disclaimer
+    lines.append(c(BOLD, "Disclaimer"))
+    lines.append("----------")
+    lines.append(c(DIM, "mcp-audit provides heuristic analysis of MCP configurations and is not a"))
+    lines.append(c(DIM, "formal security certification or guarantee. Developers remain responsible"))
+    lines.append(c(DIM, "for reviewing MCP servers, permissions, credentials, and data exposed to AI systems."))
+    lines.append("")
+
     # Safe Footer Guarantee
+    lines.append(c(BOLD, "Guarantees"))
+    lines.append("----------")
     lines.append(c(GREEN, "✓ No MCP servers were started."))
     lines.append(c(GREEN, "✓ No files were modified."))
     lines.append(c(GREEN, "✓ No data was uploaded."))

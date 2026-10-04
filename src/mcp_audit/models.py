@@ -291,6 +291,13 @@ class MCPConfiguration:
         }
 
 
+DISCLAIMER_TEXT = (
+    "mcp-audit provides heuristic analysis of MCP configurations and is not a formal "
+    "security certification or guarantee. Developers remain responsible for reviewing "
+    "MCP servers, permissions, credentials, and the data exposed to AI systems."
+)
+
+
 @dataclass
 class AuditManifest:
     """Audit metadata for reproducibility."""
@@ -303,6 +310,7 @@ class AuditManifest:
     tools_count: int
     estimated_context_tokens: int
     analysis_limits: dict[str, Any]
+    disclaimer: str = DISCLAIMER_TEXT
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -321,10 +329,12 @@ class AuditReport:
     warnings: list[str] = field(default_factory=list)
     errors: list[str] = field(default_factory=list)
     limits_reached: list[str] = field(default_factory=list)
+    disclaimer: str = DISCLAIMER_TEXT
 
     def to_dict(self) -> dict[str, Any]:
         return {
             "manifest": self.manifest.to_dict(),
+            "disclaimer": self.disclaimer,
             "configuration": {
                 "file_path": self.configuration.file_path,
                 "configuration_hash": self.configuration.configuration_hash,
