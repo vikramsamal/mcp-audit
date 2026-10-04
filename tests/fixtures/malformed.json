@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "valid_server": {
+      "command": "valid-bin",
+      "args": ["--port", "8080"]
+    },
+    "malformed_server_1": "not-an-object",
+    "malformed_server_2": {
+      "command": 12345,
+      "args": "not-a-list",
+      "env": "not-a-dict",
+      "tools": [
+        "not-a-tool-object",
+        {
+          "description": "Tool missing required name field"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,191 @@
+mcp-audit
+=========
+
+Configuration:
+  examples/risky.json
+
+Servers:
+  4
+
+Tools:
+  6
+
+Estimated context:
+  ~1,772 tokens
+
+Capabilities
+------------
+READ:               5
+WRITE:              0
+DELETE:             2
+EXECUTE:            1
+NETWORK:            0
+AUTHENTICATION:     0
+SENSITIVE_DATA:     0
+
+Findings
+--------
+CRITICAL     0
+HIGH         3
+MEDIUM       4
+LOW          1
+INFO         2
+
+HIGH
+----
+[filesystem]
+Potentially broad or dangerous command argument
+
+Observed:
+  Server 'filesystem' includes command argument '--allow-all'. This argument may enable unrestricted permissions or disable safety isolation (grants unrestricted runtime permissions).
+
+Evidence:
+  --allow-all
+
+Recommendation:
+  Review and remove flags that disable sandboxing or grant elevated access.
+
+Confidence: HIGH
+
+[filesystem]
+Broad filesystem access detected
+
+Observed:
+  Server 'filesystem' is configured with a broad filesystem path '/home'. Broad filesystem access may allow an AI client or server process to read, traverse, or modify sensitive system or user files. Configured as positional argument
+
+Evidence:
+  /home
+
+Recommendation:
+  Restrict the configured filesystem directory to the specific workspace or project folder required by the workflow.
+
+Confidence: HIGH
+
+[github]
+Potential literal secret detected
+
+Observed:
+  Server 'github' contains a credential-like configuration field 'GITHUB_TOKEN' that appears to be a static or hardcoded value rather than an environment reference.
+
+Evidence:
+  GITHUB_TOKEN=[REDACTED]
+
+Recommendation:
+  Replace static secret in 'GITHUB_TOKEN' with an environment variable reference (e.g. ${{VAR_NAME}} or by passing it via a secure credential manager).
+
+Confidence: HIGH
+
+MEDIUM
+------
+[filesystem.delete_file]
+Destructive data deletion capability
+
+Observed:
+  Tool 'filesystem.delete_file' appears capable of deleting or removing data, files, or resources.
+
+Evidence:
+  Tool name matches '^delete(?:_|\b)'
+
+Recommendation:
+  Verify that deletion tools require explicit user confirmation before execution when used by autonomous agents.
+
+Confidence: HIGH
+
+[local-shell]
+Shell execution capability detected
+
+Observed:
+  Server 'local-shell' is configured to run shell command '/bin/bash' with arguments -c run-mcp-agent. An MCP server utilizing an interactive shell or interpreter may expose broad command execution capabilities to an AI client.
+
+Evidence:
+  /bin/bash with arguments -c run-mcp-agent
+
+Recommendation:
+  Review whether shell execution is strictly necessary. Prefer dedicated, single-purpose CLI binaries with restricted arguments.
+
+Confidence: HIGH
+
+[database.execute_query]
+Arbitrary code or command execution capability
+
+Observed:
+  Tool 'database.execute_query' appears capable of executing arbitrary commands, scripts, or queries.
+
+Evidence:
+  Tool name matches '^execute(?:_|\b)'
+
+Recommendation:
+  Restrict parameter inputs and ensure strict sanitization or confirmation gates for code execution tools.
+
+Confidence: HIGH
+
+[database.drop_table]
+Destructive data deletion capability
+
+Observed:
+  Tool 'database.drop_table' appears capable of deleting or removing data, files, or resources.
+
+Evidence:
+  Tool name matches '^drop(?:_|\b)'
+
+Recommendation:
+  Verify that deletion tools require explicit user confirmation before execution when used by autonomous agents.
+
+Confidence: HIGH
+
+LOW
+---
+[github]
+Process execution capability detected
+
+Observed:
+  Server 'github' executes binary 'node' with arguments dist/index.js. Review process permissions and host capabilities granted to this binary.
+
+Evidence:
+  node with arguments dist/index.js
+
+Recommendation:
+  Ensure the binary runs with the least privileges necessary.
+
+Confidence: MEDIUM
+
+INFO
+----
+[filesystem.search_files, find_files]
+Potentially overlapping tools
+
+Observed:
+  Tools 'filesystem.search_files' and 'filesystem.find_files' appear to provide overlapping functionality (both perform 'search' on 'files'). Overlapping tools may cause agent confusion or redundant context footprint.
+
+Evidence:
+  Tools: search_files <-> find_files
+
+Recommendation:
+  Review whether both tools are necessary or if they can be unified.
+
+Confidence: MEDIUM
+
+[github.search_everything]
+Large MCP tool definition
+
+Observed:
+  Tool 'github.search_everything' has an estimated definition size of ~1,417 tokens (threshold: 1,000 tokens). Large tool definitions increase context overhead and prompt costs on every model invocation.
+
+Evidence:
+  ~1,417 estimated tokens
+
+Recommendation:
+  Review whether tool descriptions or JSON schemas can be streamlined or modularized.
+
+Confidence: HIGH
+
+Context
+-------
+github               ~1,443 tokens
+filesystem           ~168 tokens
+database             ~134 tokens
+local-shell          ~27 tokens
+
+✓ No MCP servers were started.
+✓ No files were modified.
+✓ No data was uploaded.

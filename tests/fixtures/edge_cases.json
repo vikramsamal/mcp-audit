@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "unicode_server_🚀": {
+      "command": "/usr/local/bin/русский_скрипт",
+      "args": ["--инпут", "данные 🎯", "C:\\Windows\\System32\\cmd.exe"],
+      "env": {
+        "UNICODE_VAR": "こんにちは世界"
+      },
+      "tools": [
+        {
+          "name": "analyze_unicode_🔍",
+          "description": "Analyzes multilingual text containing emojis 🚀 and international characters: Español, Français, Deutsch, 中文, 日本語.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "текст": { "type": "string" }
+            }
+          }
+        },
+        {
+          "name": "tool_with_no_description",
+          "description": ""
+        }
+      ],
+      "resources": [
+        {
+          "uri": "custom://resources/report.pdf",
+          "name": "Audit Report",
+          "description": "System generated report",
+          "mimeType": "application/pdf"
+        }
+      ]
+    },
+    "minimal_server": {
+      "command": "echo"
+    }
+  }
+}

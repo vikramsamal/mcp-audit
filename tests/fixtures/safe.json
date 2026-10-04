@@ -1,0 +1,52 @@
+{
+  "mcpServers": {
+    "git": {
+      "command": "git-mcp",
+      "args": ["--repo", "/workspace/my-project"],
+      "env": {
+        "GIT_AUTHOR_NAME": "Developer",
+        "GIT_CONFIG_PATH": "${HOME}/.gitconfig"
+      },
+      "tools": [
+        {
+          "name": "get_status",
+          "description": "Returns current git working tree status and branch info.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "short": { "type": "boolean", "description": "Give the output in short-format" }
+            }
+          }
+        },
+        {
+          "name": "search_commits",
+          "description": "Searches git log history for matching commit messages.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": { "type": "string", "description": "Search pattern for commit messages" }
+            },
+            "required": ["query"]
+          }
+        }
+      ]
+    },
+    "docs-helper": {
+      "command": "docs-server",
+      "args": ["--dir", "./docs"],
+      "tools": [
+        {
+          "name": "search_documentation",
+          "description": "Searches documentation files and user guides explaining system architecture and how to delete or configure modules.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "search_term": { "type": "string", "description": "Keyword to look up in documentation" }
+            },
+            "required": ["search_term"]
+          }
+        }
+      ]
+    }
+  }
+}

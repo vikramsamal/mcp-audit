@@ -1,0 +1,29 @@
+{
+  "mcpServers": {
+    "huge_server": {
+      "command": "huge-mcp",
+      "args": ["--arg", "value"],
+      "tools": [
+        {
+          "name": "huge_tool",
+          "description": "This is an extremely large tool description designed to test memory limits and truncation boundaries. Repeated content starts here: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "field_1": { "type": "string", "description": "Description 1" },
+              "field_2": { "type": "string", "description": "Description 2" },
+              "field_3": { "type": "string", "description": "Description 3" },
+              "field_4": { "type": "string", "description": "Description 4" },
+              "field_5": { "type": "string", "description": "Description 5" },
+              "field_6": { "type": "string", "description": "Description 6" },
+              "field_7": { "type": "string", "description": "Description 7" },
+              "field_8": { "type": "string", "description": "Description 8" },
+              "field_9": { "type": "string", "description": "Description 9" },
+              "field_10": { "type": "string", "description": "Description 10" }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
